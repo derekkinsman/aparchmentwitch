@@ -19,21 +19,26 @@ class TroikaBackgroundsBot:
 
   def tweet(self):
     message = self.model.make_short_sentence(280)
-    print(message)
+    # print(message)
     try:
       self.api.update_status(message)
     except tweepy.TweepError as error:
       print(error.reason)
 
-  def automate(self, delay):
-    while True:
-      self.tweet()
-      sleep(delay)
+  def tweeter(self):
+    self.tweet()
 
-def main():
-  troika = TroikaBackgroundsBot("backgrounds.txt")
+  # def automate(self, delay):
+  #   while True:
+  #     self.tweet()
+  #     sleep(delay)
+
+# def main():
+  # troika = TroikaBackgroundsBot("backgrounds.txt")
   # Generate background text once a week
-  troika.automate(604800)
+  # troika.automate(604800)
 
 if __name__ == "__main__":
-  main()
+  # main()
+  troika = TroikaBackgroundsBot("backgrounds.txt")
+  troika.tweeter()
